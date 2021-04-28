@@ -16,14 +16,14 @@ function distanceFromHqInBlocks(location) {
 
 // returns the number of feet from Scuber's to the pickup location
 function distanceFromHqInFeet(location) {
-    if (location > 42) {
-        distanceMeasuredInBlocks = location - 42;
-    } else if (location < 42) {
-        distanceMeasuredInBlocks = 42 - location;
-    } else if (location === 0) {
-        distanceMeasuredInBlocks = 0;
-    }
-    let distanceMeasuredInFeet = distanceMeasuredInBlocks * 264;
+    // if (location > 42) {
+    //     distanceMeasuredInBlocks = location - 42;
+    // } else if (location < 42) {
+    //     distanceMeasuredInBlocks = 42 - location;
+    // } else if (location === 0) {
+    //     distanceMeasuredInBlocks = 0;
+    // }
+    let distanceMeasuredInFeet = distanceFromHqInBlocks(location) * 264;
     return distanceMeasuredInFeet;
 }
 
@@ -44,13 +44,8 @@ function distanceTravelledInFeet(start, end) {
 // given the same starting and ending block, return the fare for the customer where 
 // the first 100 feet are free 
 function calculatesFarePrice(start, end) {
-    if (start > end) {
-        distance = (start - end) * 264;
-    } else if (start < end) {
-        distance = (end - start) * 264;
-    } else if (start === end) {
-        distance = 0;
-    }
+    let distance = distanceTravelledInFeet(start,end);
+
     let farePrice;
     if (distance <= 400) {
         farePrice = 0;
